@@ -30,10 +30,13 @@ RUN apt-get install -y \
 # Not in the system dist repo.
 # libbrotlidec >= 1.0.0 (optional, if you want HTTP brotli decompression)
 
-
 RUN ./bootstrap
 RUN ./configure --prefix=/usr
 RUN make -j 4
 RUN make install
 
-ENTRYPOINT [ "wget2"]
+RUN mkdir -p /data
+
+WORKDIR /data
+
+ENTRYPOINT ["stdbuf", "-o", "0", "wget2"]
