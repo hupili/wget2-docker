@@ -1,0 +1,6 @@
+version: '2'
+
+services:
+  wget2:
+    build: .
+    image: hupili/wget2
